@@ -203,8 +203,11 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  if (str.startsWith(substr)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -218,8 +221,11 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  if (str.endsWith(substr)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -249,12 +255,12 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
- * Returns a string with characters in alphabetical order.
+ * Returns a string with characters in .
  *
  * @param {string} str - The input string.
  * @return {string} - The string in alphabetical order.
@@ -264,8 +270,8 @@ function reverseString(/* str */) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -280,8 +286,11 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  if (str.includes(substring)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -298,8 +307,17 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vow = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let count = 0;
+  for (let i = 0; i < vow.length; i += 1) {
+    for (let j = 0; j < str.length; j += 1) {
+      if (str[j].includes(vow[i])) {
+        count += 1;
+      }
+    }
+  }
+  return count;
 }
 
 /**
@@ -317,6 +335,12 @@ function countVowels(/* str */) {
  */
 function isPalindrome(/* str */) {
   throw new Error('Not implemented');
+  /* const tt = str.split(' ').join('').toLowerCase();
+  const rr = tt.split('').reverse().join('');
+  if (rr === tt) {
+    return true;
+  }
+  return false; */
 }
 
 /**
@@ -331,8 +355,21 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const tt = sentence.split(' ').sort((a, b) => a.length - b.length);
+  const arr = sentence.split(' ').length;
+  const word = tt[arr - 1].length;
+  if (tt[arr - 3]) {
+    if (word === tt[arr - 2].length && word === tt[arr - 3].length) {
+      return tt[arr - 3].toString();
+    }
+  }
+  if (tt[arr - 2]) {
+    if (word === tt[arr - 2].length) {
+      return tt[arr - 2].toString();
+    }
+  }
+  return tt[arr - 1].toString();
 }
 
 /**
