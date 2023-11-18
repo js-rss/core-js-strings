@@ -179,8 +179,14 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const ind = str.lastIndexOf(value);
+  if (ind !== -1) {
+    const first = str.slice(0, ind);
+    const second = str.slice(ind + value.length);
+    return first + second;
+  }
+  return str;
 }
 
 /**
@@ -348,14 +354,19 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
-  /* const tt = str.split(' ').join('').toLowerCase();
+function isPalindrome(str) {
+  const tt = str
+    .split(' ')
+    .join('')
+    .toLowerCase()
+    .replace('!', '')
+    .replace('?', '')
+    .replaceAll(',', '');
   const rr = tt.split('').reverse().join('');
   if (rr === tt) {
     return true;
   }
-  return false; */
+  return false;
 }
 
 /**
@@ -506,8 +517,17 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const Orig = ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!?';
+  const Rot13 = ' NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm!?';
+  let res = '';
+  for (let i = 0; i < str.length; i += 1) {
+    for (let j = 0; j < Orig.length; j += 1)
+      if (str[i] === Orig[j]) {
+        res += Rot13[j];
+      }
+  }
+  return res;
 }
 
 /**
